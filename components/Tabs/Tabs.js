@@ -5,7 +5,7 @@ class TabLink {
     
     // Get the `data-tab` value from this.tabElement and store it here
  
-    this.tabData = document.querySelector(`.tabElement[data-tab= '${this.tabData}']`);
+    this.tabData = this.tabElement.dataset.tab;
     
     // We need to find out if a user clicked 'all' cards or a specific category.  Follow the instructions below to accomplish this task:    
     
@@ -21,7 +21,7 @@ class TabLink {
   
 
      // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
-     this.cards = Array.from(this.cards).map(cards => new TabCard(card));
+     this.cards = Array.from(this.cards).map(cards => new TabCard(this.card));
      
   
     // Add a click event that invokes this.selectTab 
@@ -40,11 +40,11 @@ class TabLink {
      const cards = document.querySelectorAll('.card');
 
     // Iterate through the NodeList setting the display style each one to 'none'
-      cards.forEach( currentValue => currentValue.style.display = 'none');
+      cards.forEach(cards => cards.style.display = 'none');
   
     
     // Add a class of ".active-tab" to this.tabElement
-     this.tabElement.classList.add('.active-tab');
+     this.tabElement.classList.add('active-tab');
   
     // Notice we are looping through the this.cards array and invoking selectCard() from the TabCard class. Just un-comment the code and study what is happening here.
      this.cards.forEach(card => card.selectCard());
@@ -58,12 +58,14 @@ class TabCard {
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
-    this.cardElement( currentValue => currentValue.style.display = 'flex');
+    // this.cardElement(cards => cards.style.display = 'flex');
+    // this.cardElement = document.getElementsByClassName('card'),
+    // this.cardElement.body.style.display = 'flex';
+  
+    this.cardElement.style.display = 'flex';
   
   }
-
-}
-
+};
 /* START HERE: 
 
 - Select all classes named ".tab" and assign that value to the tabs variable
@@ -74,4 +76,5 @@ class TabCard {
 
 */
 let tabs = document.querySelectorAll('.tab').forEach(link => new TabLink(link));
+
 //working//
