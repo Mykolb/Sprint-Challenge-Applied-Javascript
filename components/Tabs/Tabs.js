@@ -13,15 +13,15 @@ class TabLink {
     // Check to see if this.tabData is equal to 'all'
     if(this.tabData === 'all') {
       // If `all` is true, select all cards regardless of their data attribute values
-      this.cards = document.querySelectorAll('.card');
+      this.cards = document.querySelectorAll(`.card[data-tab='${this.data}']`);
     } else {
       // else if `all` is false, only select the cards with matching this.tabData values
-     this.cards = document.querySelectorAll('this.tabData');
+     this.cards = document.querySelectorAll(`.tabData[data-tab='${this.data}']`);
     }
   
 
      // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
-     this.cards = Array.from(this.cards).map(cards => new TabCard(this.card));
+     this.cards = Array.from(this.cards).map(tabElement => new TabCard(this.card));
      
   
     // Add a click event that invokes this.selectTab 
@@ -40,7 +40,7 @@ class TabLink {
      const cards = document.querySelectorAll('.card');
 
     // Iterate through the NodeList setting the display style each one to 'none'
-      cards.forEach(cards => cards.style.display = 'none');
+      cards.forEach(card => card.style.display = 'none');
   
     
     // Add a class of ".active-tab" to this.tabElement
@@ -58,14 +58,9 @@ class TabCard {
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
-    // this.cardElement(cards => cards.style.display = 'flex');
-    // this.cardElement = document.getElementsByClassName('card'),
-    // this.cardElement.body.style.display = 'flex';
-  
-    this.cardElement.style.display = 'flex';
-  
+    this.cardElement.display = 'flex';
+    }
   }
-};
 /* START HERE: 
 
 - Select all classes named ".tab" and assign that value to the tabs variable
